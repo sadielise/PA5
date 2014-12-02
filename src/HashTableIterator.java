@@ -1,3 +1,8 @@
+// PA5
+// Authors: Sadie Henry, Gabriella Fontani
+// Date: 12/1/2014
+// Class: CS200
+
 import java.util.Iterator;
 
 public class HashTableIterator implements Iterator<Term>{

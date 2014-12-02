@@ -1,3 +1,7 @@
+// PA5
+// Authors: Sadie Henry, Gabriella Fontani
+// Date: 12/1/2014
+// Class: CS200
 
 public class HashTable implements TermIndex{
 	//size keeps track of how many terms are in the hash table
