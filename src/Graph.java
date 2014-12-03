@@ -76,6 +76,15 @@ public class Graph {
 	{
 		return adjList.get(v).get(w);
 	}
+	
+	
+	/**
+	 * adds a vertex to the graph
+	 */
+	public void addVertex(){
+		numVertices++;
+		adjList.add(new TreeMap<Integer, Integer>());
+	}
 
 	/**
 	 * Adds an edge from c to w with weight wgt to the graph </br>
