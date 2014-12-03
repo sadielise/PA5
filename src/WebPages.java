@@ -43,6 +43,8 @@ public class WebPages
 
 			//add the file name to arraylist
 			fileNames.add(filename);
+			
+			
 
 			//read line-by-line through the file to get words
 			Scanner readFile = new Scanner(new File(filename));
