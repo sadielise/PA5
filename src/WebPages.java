@@ -225,11 +225,13 @@ public class WebPages
 		// create the first line of the program
 		writer.println("digraph graph5 {");
 		
+		// get the files and where they point to
+		String files = graph.toFile();
+		writer.print(files);
 		
-		
-		}
-		
-		
+		// print the final bracket
+		writer.println("}");		
+		}	
 		catch(Exception e){
 			System.err.println("Print writer error: " + e);
 			System.exit(0);
@@ -359,14 +361,4 @@ public class WebPages
 
 	}
 
-
-
-
 }
-
-
-
-
-
-
-

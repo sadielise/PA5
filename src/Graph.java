@@ -2,6 +2,7 @@
 // Authors: Sadie Henry, Gabriella Fontani
 // Date: 12/1/2014
 // Class: CS200
+// This code was taken from the CS200 Recitation 14 and adjusted for our use
 
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -20,17 +21,12 @@ public class Graph {
 	private int numEdges;
 
 	/**
-	 * I have added a boolean value to the class to help get you start with manipulating the constructor and the 
-	 * methods to differentiate between directed/undirected.
+	 * Boolean value to differentiate b/w directed and undirected graphs
 	 */
 	private boolean directed;
 
 	/**
-	 * For each vertex, we need to keep track of the edges, so for each edge, 
-	 * we need to store the second vertex and the edge weight. This can be done 
-	 * as a <key, value> pair, with the second vertex as the key, and the weight 
-	 * as the value. The TreeMap data structure is used to store a list of these
-	 * (key, value) pairs for each vertex, accessible as adjList.get(v)
+	 * Vector to keep track of the graph 
 	 */
 	private Vector<ArrayList<String>> adjList;
 
@@ -40,7 +36,7 @@ public class Graph {
 	private ArrayList<String> filenames;
 
 	/**
-	 * Constructor for weighted graph </br>
+	 * Constructor for graph </br>
 	 * Precondition: The number of vertices n should be greater than 0 </br>
 	 * Postcondition: Initializes the graph with n vertices
 	 * @param n
@@ -104,11 +100,8 @@ public class Graph {
 
 
 	/**
-	 * Adds an edge from c to w with weight wgt to the graph </br>
+	 * Adds an edge from c to w and vice versa if undirected</br>
 	 * Precondition The vertices contained within the edge e exist in the graph
-	 * @param v
-	 * @param w
-	 * @param wgt
 	 */
 	public void addEdge(String file1, String file2) 
 	{
@@ -133,11 +126,6 @@ public class Graph {
 	//		numEdges++;
 	//	}
 
-
-	/**
-	 * Adds an edge to the graph
-	 * @param e
-	 */
 	//don't need this method for PA5
 	//	public void addEdge(Edge e)
 	//	{
@@ -170,9 +158,6 @@ public class Graph {
 	/**
 	 * Finds the edge connecting v and w. </br>
 	 * Precondition: The edge exists
-	 * @param v
-	 * @param w
-	 * @return The edge with the weight
 	 */
 	public Edge FindEdge(String file1, String file2)
 	{
@@ -186,8 +171,6 @@ public class Graph {
 	/**
 	 * package access </br>
 	 * Returns the adjacency list for given vertex
-	 * @param v
-	 * @return The associated adjacency list
 	 */
 	ArrayList<String> getAdjList(Integer v)
 	{
@@ -206,16 +189,37 @@ public class Graph {
 			}
 			temp = temp + "\n";
 		}
-
-
 		return temp;
 	}
-	
+
+	// gets the list of files and where they point to
+	// helper method for WebPages.toDotFile
+	public String toFile(){
+		String temp = "";
+		for(int i = 0; i < numVertices; i++){
+			ArrayList<String> adjListSearch = getAdjList(i);
+			for(int j = 0; j < adjListSearch.size(); j++){
+				temp = temp + "\"" + filenames.get(i) + "\"";
+				temp = temp + " -> \"" + adjListSearch.get(j) + "\";";
+				temp = temp + "\n";
+			}
+		}
+		return temp;
+	}
+
+	// gets the number of files that point to a specific file/vertex
 	public int numInDegree(String filename){
 		int count = 0;
-	
-		
+
+		int index = filenames.indexOf(filename);
+		ArrayList<String> adjListSearch = getAdjList(index);
+		for(int j = 0; j < adjListSearch.size(); j++){
+			count++;
+		}	
+		return count;
 	}
+
+
 	public static void main(String args[]){
 		Graph graph = new Graph(false);
 		graph.addVertex("vertex2");
