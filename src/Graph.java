@@ -4,6 +4,7 @@
 // Class: CS200
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeMap;
 import java.util.Vector;
 
@@ -183,6 +184,32 @@ public class Graph {
 		return new Edge(v, w, weight);
 	}
 
+	
+	/**
+	 * this method alphabetizes the files in the adjList
+	 */
+	public void alphaList(){
+		Vector<ArrayList<String>> tempGraph = new Vector<ArrayList<String>>();
+		ArrayList<String> tempFileList = new ArrayList<String>();
+		ArrayList<String> temp = new ArrayList<String>();
+		for(int k = 0; k<filenames.size(); k++){
+			tempFileList.add(filenames.get(k));
+		}
+		Collections.sort(tempFileList);
+		int index = 0;
+		for(int i = 0; i < tempFileList.size(); i++){
+			tempGraph.add(new ArrayList<String>());
+			index = filenames.indexOf(tempFileList.get(i));
+			temp = adjList.get(index);
+			for(int j = 0; j<temp.size(); j++){
+				tempGraph.get(i).add(temp.get(j));
+			}
+		}
+		
+		filenames = tempFileList;
+		adjList = tempGraph;
+	}
+	
 	/**
 	 * package access </br>
 	 * Returns the adjacency list for given vertex
@@ -213,6 +240,7 @@ public class Graph {
 	
 	public int numInDegree(String filename){
 		int count = 0;
+		return count;
 	
 		
 	}
@@ -234,7 +262,7 @@ public class Graph {
 		graph.addEdge("vertex1", "vertex4");
 		graph.addEdge("vertex1", "vertex5");
 		graph.addEdge("vertex4", "vertex5");
-		System.out.println("undirected: \n" + graph.toString());
+		//System.out.println("undirected: \n" + graph.toString());
 
 		Graph graph2 = new Graph(true);
 		graph2.addVertex("vertex2");
@@ -252,6 +280,9 @@ public class Graph {
 		graph2.addEdge("vertex1","vertex5");
 		graph2.addEdge("vertex4", "vertex5");
 		System.out.println("directed: \n" + graph2.toString());
+		graph2.alphaList();
+		System.out.println("directed in order: \n" + graph2.toString());
+
 
 
 	}
