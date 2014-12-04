@@ -5,6 +5,7 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,19 +13,22 @@ import java.util.Scanner;
 
 public class WebPages 
 {
-	//Instance variable for hash table of Terms
+	// global variable for hash table of Terms
 	private HashTable termIndex;
 
-	//instance variable for the number of pages read in
+	// global variable for the number of pages read in
 	private int pageCount;
 
 	// variables for highest sim value
 	String highestSimString;
 	double highestSimVal = 0.0;
 
-	//instance variable for the names of pages read in
+	// global variable for the names of pages read in
 	private ArrayList<String> fileNames = new ArrayList<String>();
 
+	// global variable for a graph
+	Graph graph = new Graph(true);
+	
 	//initializes a new index, a binary search tree of Term
 	public WebPages(int hashSize)
 	{
@@ -80,12 +84,6 @@ public class WebPages
 
 	}
 
-	public void printDepth(String word)
-	{
-		//get term depth in binary tree
-		termIndex.get(word, true);
-
-	}
 
 	//prints on a separate line each word followed by two spaces followed by its 
 	//frequency in the order in which it is stored in the ArrayList (as in PA1).
@@ -157,24 +155,6 @@ public class WebPages
 		return .5*(1 + Math.log(pc/df));
 	}
 
-	private String[] sortArray(String[] array){
-
-		for(int i = 0; i < array.length-1; i++){
-			
-			array[i].toLowerCase();
-			array[i+1].toLowerCase();
-
-			// if the item is greater than the one after it, swap
-			if(array[i].compareTo(array[i+1]) > 0){
-				String temp = array[i];
-				array[i] = array[i+1];
-				array[i+1] = temp;
-			}
-		}
-
-		return array;
-	}
-
 	private String listToString(ArrayList<String> array){
 		String retVal = "[";
 		for(int i = 0; i < array.size(); i++){
@@ -231,12 +211,29 @@ public class WebPages
 	
 	// returns the number of edges incoming to a file
 	public int inDegree(String filename){
-		return 0;
+		return graph.numInDegree(filename);
 	}
 	
 	// creates a file that specifies the graph
 	public void writeDotFile(String outputFile){
 		
+		try{
+		
+		// create a print writer
+		PrintWriter writer = new PrintWriter(outputFile);
+		
+		// create the first line of the program
+		writer.println("digraph graph5 {");
+		
+		
+		
+		}
+		
+		
+		catch(Exception e){
+			System.err.println("Print writer error: " + e);
+			System.exit(0);
+		}
 	}
 
 	// compute cosine similarity

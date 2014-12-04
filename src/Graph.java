@@ -205,6 +205,12 @@ public class Graph {
 
 		return temp;
 	}
+	
+	public int numInDegree(String filename){
+		int count = 0;
+	
+		
+	}
 	public static void main(String args[]){
 		Graph graph = new Graph(false);
 		graph.addVertex("vertex0");
