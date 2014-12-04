@@ -28,7 +28,7 @@ public class WebPages
 
 	// global variable for a graph
 	Graph graph = new Graph(true);
-	
+
 	//initializes a new index, a binary search tree of Term
 	public WebPages(int hashSize)
 	{
@@ -46,8 +46,8 @@ public class WebPages
 
 			//add the file name to arraylist
 			fileNames.add(filename);
-			
-			
+
+
 
 			//read line-by-line through the file to get words
 			Scanner readFile = new Scanner(new File(filename));
@@ -112,8 +112,16 @@ public class WebPages
 	}
 
 	//method to strip HTML tags out of a string
+	//also adds files to the graph when necessary
 	public String stripHTML(String a)
 	{
+		String pattern = "(.*?)(<a\\shref=\"http://)(.*?)(\">)(.*?)";
+		if(a.matches(pattern)){
+			String temp = a.replaceAll(pattern, "$3");
+			System.out.println(temp);
+			System.out.println(a);
+		}
+
 		return a.replaceAll("<.*?>", "");
 	}
 
@@ -148,7 +156,7 @@ public class WebPages
 
 		// get the number of docs that contain word
 		int dfi = temp.getDocFrequency();
-		
+
 		double pc = pageCount;
 		double df = (double)dfi;
 
@@ -163,7 +171,7 @@ public class WebPages
 		retVal += "]";
 		return retVal;
 	}
-	
+
 	private void setZero(ArrayList<Double> array){
 
 		for(int i = 0; i < pageCount; i++){
@@ -208,29 +216,29 @@ public class WebPages
 		}
 
 	}
-	
+
 	// returns the number of edges incoming to a file
 	public int inDegree(String filename){
 		return graph.numInDegree(filename);
 	}
-	
+
 	// creates a file that specifies the graph
 	public void writeDotFile(String outputFile){
-		
+
 		try{
-		
-		// create a print writer
-		PrintWriter writer = new PrintWriter(outputFile);
-		
-		// create the first line of the program
-		writer.println("digraph graph5 {");
-		
-		// get the files and where they point to
-		String files = graph.toFile();
-		writer.print(files);
-		
-		// print the final bracket
-		writer.println("}");		
+
+			// create a print writer
+			PrintWriter writer = new PrintWriter(outputFile);
+
+			// create the first line of the program
+			writer.println("digraph graph5 {");
+
+			// get the files and where they point to
+			String files = graph.toFile();
+			writer.print(files);
+
+			// print the final bracket
+			writer.println("}");		
 		}	
 		catch(Exception e){
 			System.err.println("Print writer error: " + e);
@@ -252,7 +260,7 @@ public class WebPages
 			String s = scan.next();
 			queryList.add(s);
 		}
-		
+
 		scan.close();
 
 		// sort query list
@@ -275,20 +283,20 @@ public class WebPages
 
 		// variable for second summation in the denominator (scalar)
 		Double queryWeights = 0.0;
-		
+
 		// variable for WIQ calculation
 		double wiq = 0.0;
-		
+
 		// variable for TFIDF calculation
 		double wid = 0.0;
-		
+
 		// variables for highest sim value
 		String highestSimString = "";
 		double highestSimVal = 0.0;
-		
+
 		// create iterator
 		HashTableIterator iterator = new HashTableIterator(termIndex);		
-		
+
 		// for each term i
 		while(iterator.hasNext()){
 
@@ -330,9 +338,9 @@ public class WebPages
 					double currentVal1 = common.get(index);
 					common.set(index, currentVal1+commonVal);
 				}
-				
+
 			}
-			
+
 		}
 
 		// for each document d
@@ -346,18 +354,26 @@ public class WebPages
 				highestSimString = docs.get(m);
 			}
 		}
-		
+
 		// multiply the heighest sim val by the indegree of 
 		highestSimVal = highestSimVal * inDegree(highestSimString);
-		
-		
+
+
 		DecimalFormat fmt = new DecimalFormat("0.00");
-		
+
 		if(queryWeights == 0){
 			return " not found in files";
 		}
-		
+
 		return listToString(queryList) + " in " + highestSimString + ": " + fmt.format(highestSimVal);
+
+	}
+
+	//testing!!
+	public static void main(String args[]){
+		String test = "fdsjaklfjdkla<a href=\"http://FILENAME\">jdkslajfkld";
+		WebPages page = new WebPages(5);
+		page.stripHTML(test);
 
 	}
 
