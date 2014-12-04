@@ -237,7 +237,6 @@ public class Graph {
 	// gets the number of files that point to a specific file/vertex
 	public int numInDegree(String filename){
 		int count = 0;
-<<<<<<< HEAD
 
 		int index = filenames.indexOf(filename);
 		ArrayList<String> adjListSearch = getAdjList(index);
@@ -245,11 +244,6 @@ public class Graph {
 			count++;
 		}	
 		return count;
-=======
-		return count;
-	
-		
->>>>>>> origin/adding-method-to-graph-to-alphabatize
 	}
 
 
