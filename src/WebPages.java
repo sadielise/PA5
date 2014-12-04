@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class WebPages 
@@ -229,6 +228,16 @@ public class WebPages
 		}
 
 	}
+	
+	// returns the number of edges incoming to a file
+	public int inDegree(String filename){
+		return 0;
+	}
+	
+	// creates a file that specifies the graph
+	public void writeDotFile(String outputFile){
+		
+	}
 
 	// compute cosine similarity
 	public String bestPages(String query){
@@ -338,6 +347,9 @@ public class WebPages
 				highestSimString = docs.get(m);
 			}
 		}
+		
+		// multiply the heighest sim val by the indegree of 
+		highestSimVal = highestSimVal * inDegree(highestSimString);
 		
 		
 		DecimalFormat fmt = new DecimalFormat("0.00");

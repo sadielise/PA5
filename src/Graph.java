@@ -1,3 +1,8 @@
+// PA5
+// Authors: Sadie Henry, Gabriella Fontani
+// Date: 12/1/2014
+// Class: CS200
+
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -37,7 +42,7 @@ public class Graph {
 	/**
 	 * Constructor for weighted graph </br>
 	 * Precondition: The number of vertices n should be greater than 0 </br>
-	 * Postcondition: Intializes the graph with n vertices
+	 * Postcondition: Initializes the graph with n vertices
 	 * @param n
 	 */
 	public Graph(boolean directed)

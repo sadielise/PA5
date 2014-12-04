@@ -10,12 +10,16 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class PA5 {
+	
+	public static String outputFile;
 
 	public static void main(String[] args){
 
 		try {
 			Scanner scan = new Scanner(new File(args[0]));
-
+			
+			// scan in the name of the output file for the graph
+			outputFile = scan.nextLine();
 			//scan in the size of the hash table
 			int tempInt = scan.nextInt();
 			//initialize WebPages with the int
@@ -52,17 +56,15 @@ public class PA5 {
 				queries.add(line);
 			}
 			
-			//print the terms
-			pages.printTerms();
-			
-			
- 			//best pages
+ 			// call best pages and print out query info
 			for(int i = 0; i < queries.size(); i++){
 				String query = queries.get(i);
 				System.out.println(pages.bestPages(query));				
 			}
-
 			
+			// print the graph in output file
+			pages.writeDotFile(outputFile);
+		
 			scan.close();
 		} catch (Exception e) {
 			System.out.println("Error: " + e);

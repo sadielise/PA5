@@ -1,3 +1,9 @@
+// PA5
+// Authors: Sadie Henry, Gabriella Fontani
+// Date: 12/1/2014
+// Class: CS200 
+
+
 public class Edge {
 	/**
 	 * The vertices of the edge
