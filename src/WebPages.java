@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -28,7 +29,7 @@ public class WebPages
 
 	// global variable for a graph
 	Graph graph = new Graph(true);
-	
+
 	//initializes a new index, a binary search tree of Term
 	public WebPages(int hashSize)
 	{
@@ -45,17 +46,22 @@ public class WebPages
 			pageCount++;
 
 			//add the file name to arraylist
+<<<<<<< HEAD
 			fileNames.add(filename);			
+=======
+			fileNames.add(filename);
+>>>>>>> origin/webPages
 
 			//read line-by-line through the file to get words
 			Scanner readFile = new Scanner(new File(filename));
+			String line = "";
 			while(readFile.hasNextLine())
 			{
-				//read in a line
-				String line = readFile.nextLine();
-
+				//read in a file
+				line = line + readFile.nextLine();
+			}
 				//remove HTML tags from the line
-				line = stripHTML(line);
+				line = stripHTML(line, filename);
 
 				//delimit by everything but letters, numbers, ', and <>
 				Scanner readLine = new Scanner(line).useDelimiter("[^\\w'<>]+");
@@ -71,8 +77,7 @@ public class WebPages
 				}
 
 				readLine.close();
-			}
-
+		
 			readFile.close();
 		}
 		catch(IOException e)
@@ -115,9 +120,26 @@ public class WebPages
 	}
 
 	//method to strip HTML tags out of a string
-	public String stripHTML(String a)
+	//also adds files to the graph when necessary
+	public String stripHTML(String a, String fileName)
 	{
-		return a.replaceAll("<.*?>", "");
+		graph.addVertex(fileName);
+		String pattern1 = "(<a\\p{Space}*href=\"http://)";
+		String pattern2 = "(.*)(\">.*)";
+		//split the file into an array containing the different files
+		String[] array = a.split(pattern1);
+		//make the files just the filenames
+		for(int i = 0; i < array.length; i++){
+			array[i] = array[i].replaceAll(pattern2, "$1");
+		}
+		
+		for(int j = 1; j<array.length; j++){
+			graph.addVertex(array[j]);
+			graph.addEdge(fileName, array[j]);
+		}
+
+
+		return a.replaceAll("<.*?>", " ");
 	}
 
 	//adds words to the term tree
@@ -151,7 +173,7 @@ public class WebPages
 
 		// get the number of docs that contain word
 		int dfi = temp.getDocFrequency();
-		
+
 		double pc = pageCount;
 		double df = (double)dfi;
 
@@ -166,7 +188,7 @@ public class WebPages
 		retVal += "]";
 		return retVal;
 	}
-	
+
 	private void setZero(ArrayList<Double> array){
 
 		for(int i = 0; i < pageCount; i++){
@@ -211,29 +233,29 @@ public class WebPages
 		}
 
 	}
-	
+
 	// returns the number of edges incoming to a file
 	public int inDegree(String filename){
 		return graph.numInDegree(filename);
 	}
-	
+
 	// creates a file that specifies the graph
 	public void writeDotFile(String outputFile){
-		
+
 		try{
-		
-		// create a print writer
-		PrintWriter writer = new PrintWriter(outputFile);
-		
-		// create the first line of the program
-		writer.println("digraph graph5 {");
-		
-		// get the files and where they point to
-		String files = graph.toFile();
-		writer.print(files);
-		
-		// print the final bracket
-		writer.println("}");		
+
+			// create a print writer
+			PrintWriter writer = new PrintWriter(outputFile);
+
+			// create the first line of the program
+			writer.println("digraph graph5 {");
+
+			// get the files and where they point to
+			String files = graph.toFile();
+			writer.print(files);
+
+			// print the final bracket
+			writer.println("}");		
 		}	
 		catch(Exception e){
 			System.err.println("Print writer error: " + e);
@@ -255,7 +277,7 @@ public class WebPages
 			String s = scan.next();
 			queryList.add(s);
 		}
-		
+
 		scan.close();
 
 		// sort query list
@@ -278,20 +300,20 @@ public class WebPages
 
 		// variable for second summation in the denominator (scalar)
 		Double queryWeights = 0.0;
-		
+
 		// variable for WIQ calculation
 		double wiq = 0.0;
-		
+
 		// variable for TFIDF calculation
 		double wid = 0.0;
-		
+
 		// variables for highest sim value
 		String highestSimString = "";
 		double highestSimVal = 0.0;
-		
+
 		// create iterator
 		HashTableIterator iterator = new HashTableIterator(termIndex);		
-		
+
 		// for each term i
 		while(iterator.hasNext()){
 
@@ -333,9 +355,9 @@ public class WebPages
 					double currentVal1 = common.get(index);
 					common.set(index, currentVal1+commonVal);
 				}
-				
+
 			}
-			
+
 		}
 
 		// for each document d
@@ -349,19 +371,29 @@ public class WebPages
 				highestSimString = docs.get(m);
 			}
 		}
-		
+
 		// multiply the heighest sim val by the indegree of 
 		highestSimVal = highestSimVal * inDegree(highestSimString);
-		
-		
+
+
 		DecimalFormat fmt = new DecimalFormat("0.00");
-		
+
 		if(queryWeights == 0){
 			return " not found in files";
 		}
-		
+
 		return listToString(queryList) + " in " + highestSimString + ": " + fmt.format(highestSimVal);
 
 	}
+
+	//testing!!
+//	public static void main(String args[]){
+//		String test = "test2.txt";
+//		WebPages page = new WebPages(5);
+//		page.addPage(test);
+//		System.out.println(page.graph.toString());
+//		page.printTerms();
+//
+//	}
 
 }
