@@ -379,7 +379,7 @@ public class WebPages
 		DecimalFormat fmt = new DecimalFormat("0.00");
 
 		if(queryWeights == 0){
-			return " not found in files";
+			return listToString(queryList) + " not found";
 		}
 
 		return listToString(queryList) + " in " + highestSimString + ": " + fmt.format(highestSimVal);
