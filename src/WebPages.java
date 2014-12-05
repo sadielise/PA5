@@ -56,24 +56,24 @@ public class WebPages
 				//read in a file
 				line = line + readFile.nextLine();
 			}
-				//remove HTML tags from the line
-				line = stripHTML(line, filename);
+			//remove HTML tags from the line
+			line = stripHTML(line, filename);
 
-				//delimit by everything but letters, numbers, ', and <>
-				Scanner readLine = new Scanner(line).useDelimiter("[^\\w'<>]+");
+			//delimit by everything but letters, numbers, ', and <>
+			Scanner readLine = new Scanner(line).useDelimiter("[^\\w'<>]+");
 
-				while(readLine.hasNext())
-				{
-					//set the line to lowercase
-					String word = readLine.next().toLowerCase();
+			while(readLine.hasNext())
+			{
+				//set the line to lowercase
+				String word = readLine.next().toLowerCase();
 
-					//add the word to the TermIndex
-					addToTermIndex(word, filename);					
+				//add the word to the TermIndex
+				addToTermIndex(word, filename);					
 
-				}
+			}
 
-				readLine.close();
-		
+			readLine.close();
+
 			readFile.close();
 		}
 		catch(IOException e)
@@ -82,7 +82,7 @@ public class WebPages
 		}
 
 	}
-	
+
 	// helper method to alphabetize a list 
 	public void alphabetize(){
 		graph.alphaList();
@@ -128,10 +128,14 @@ public class WebPages
 		for(int i = 0; i < array.length; i++){
 			array[i] = array[i].replaceAll(pattern2, "$1");
 		}
-		
-		for(int j = 1; j<array.length; j++){
-			graph.addVertex(array[j]);
-			graph.addEdge(fileName, array[j]);
+
+		if(array.length>1){
+			for(int j = 1; j<array.length; j++){
+				if(!array[j].equals("")){
+					graph.addVertex(array[j]);
+					graph.addEdge(fileName, array[j]);
+				}
+			}
 		}
 
 
@@ -383,13 +387,13 @@ public class WebPages
 	}
 
 	//testing!!
-//	public static void main(String args[]){
-//		String test = "test2.txt";
-//		WebPages page = new WebPages(5);
-//		page.addPage(test);
-//		System.out.println(page.graph.toString());
-//		page.printTerms();
-//
-//	}
+//		public static void main(String args[]){
+//			String test = "test5.txt";
+//			WebPages page = new WebPages(5);
+//			page.addPage(test);
+//			System.out.println(page.graph.toString());
+//			page.printTerms();
+//	
+//		}
 
 }
