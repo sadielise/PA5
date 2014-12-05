@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -47,17 +48,16 @@ public class WebPages
 			//add the file name to arraylist
 			fileNames.add(filename);
 
-
-
 			//read line-by-line through the file to get words
 			Scanner readFile = new Scanner(new File(filename));
+			String line = "";
 			while(readFile.hasNextLine())
 			{
-				//read in a line
-				String line = readFile.nextLine();
-
+				//read in a file
+				line = line + readFile.nextLine();
+			}
 				//remove HTML tags from the line
-				line = stripHTML(line);
+				line = stripHTML(line, filename);
 
 				//delimit by everything but letters, numbers, ', and <>
 				Scanner readLine = new Scanner(line).useDelimiter("[^\\w'<>]+");
@@ -73,8 +73,7 @@ public class WebPages
 				}
 
 				readLine.close();
-			}
-
+		
 			readFile.close();
 		}
 		catch(IOException e)
@@ -113,16 +112,25 @@ public class WebPages
 
 	//method to strip HTML tags out of a string
 	//also adds files to the graph when necessary
-	public String stripHTML(String a)
+	public String stripHTML(String a, String fileName)
 	{
-		String pattern = "(.*?)(<a\\shref=\"http://)(.*?)(\">)(.*?)";
-		if(a.matches(pattern)){
-			String temp = a.replaceAll(pattern, "$3");
-			System.out.println(temp);
-			System.out.println(a);
+		graph.addVertex(fileName);
+		String pattern1 = "(<a\\p{Space}*href=\"http://)";
+		String pattern2 = "(.*)(\">.*)";
+		//split the file into an array containing the different files
+		String[] array = a.split(pattern1);
+		//make the files just the filenames
+		for(int i = 0; i < array.length; i++){
+			array[i] = array[i].replaceAll(pattern2, "$1");
+		}
+		
+		for(int j = 1; j<array.length; j++){
+			graph.addVertex(array[j]);
+			graph.addEdge(fileName, array[j]);
 		}
 
-		return a.replaceAll("<.*?>", "");
+
+		return a.replaceAll("<.*?>", " ");
 	}
 
 	//adds words to the term tree
@@ -370,11 +378,13 @@ public class WebPages
 	}
 
 	//testing!!
-	public static void main(String args[]){
-		String test = "fdsjaklfjdkla<a href=\"http://FILENAME\">jdkslajfkld";
-		WebPages page = new WebPages(5);
-		page.stripHTML(test);
-
-	}
+//	public static void main(String args[]){
+//		String test = "test2.txt";
+//		WebPages page = new WebPages(5);
+//		page.addPage(test);
+//		System.out.println(page.graph.toString());
+//		page.printTerms();
+//
+//	}
 
 }
