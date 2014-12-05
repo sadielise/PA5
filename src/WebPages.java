@@ -46,11 +46,7 @@ public class WebPages
 			pageCount++;
 
 			//add the file name to arraylist
-<<<<<<< HEAD
-			fileNames.add(filename);			
-=======
 			fileNames.add(filename);
->>>>>>> origin/webPages
 
 			//read line-by-line through the file to get words
 			Scanner readFile = new Scanner(new File(filename));
