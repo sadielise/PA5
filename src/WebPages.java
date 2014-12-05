@@ -45,9 +45,7 @@ public class WebPages
 			pageCount++;
 
 			//add the file name to arraylist
-			fileNames.add(filename);
-			
-			
+			fileNames.add(filename);			
 
 			//read line-by-line through the file to get words
 			Scanner readFile = new Scanner(new File(filename));
@@ -82,6 +80,11 @@ public class WebPages
 			System.out.println("Error: Unable to read file");
 		}
 
+	}
+	
+	// helper method to alphabetize a list 
+	public void alphabetize(){
+		graph.alphaList();
 	}
 
 

@@ -153,6 +153,7 @@ public class Graph {
 		adjList.get(v).remove(w);
 		//EDIT only not directed graph has this
 		if(!directed) adjList.get(w).remove(v);
+		
 		numEdges--;
 	}
 

@@ -47,6 +47,9 @@ public class PA5 {
 				tempString = scan.nextLine();
 			}
 			
+			//alphabetize graph
+			pages.alphabetize();
+			
 			// arraylist for queries
 			ArrayList<String> queries = new ArrayList<String>();
 			// get queries
