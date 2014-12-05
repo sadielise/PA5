@@ -238,8 +238,6 @@ public class Graph {
 	// gets the number of files that point to a specific file/vertex
 	public int numInDegree(String filename){
 		int count = 0;
-//		int index = filenames.indexOf(filename);
-//		ArrayList<String> adjListSearch = getAdjList(index);
 		for(int i = 0; i<adjList.size(); i++){
 			if(adjList.get(i).contains(filename)){
 				count++;
