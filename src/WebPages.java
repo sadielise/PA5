@@ -369,13 +369,14 @@ public class WebPages
 		}
 
 		// multiply the heighest sim val by the indegree of 
-		highestSimVal = highestSimVal * inDegree(highestSimString);
+		//highestSimVal = highestSimVal * inDegree(highestSimString);
+		System.out.println("InDegree: " + inDegree(highestSimString));
 
 
 		DecimalFormat fmt = new DecimalFormat("0.00");
 
 		if(queryWeights == 0){
-			return " not found in files";
+			return listToString(queryList) + " not found";
 		}
 
 		return listToString(queryList) + " in " + highestSimString + ": " + fmt.format(highestSimVal);

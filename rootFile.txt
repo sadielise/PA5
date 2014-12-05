@@ -6,7 +6,6 @@ test3.txt
 text4.txt
 *EOFs*
 and
-possum
 dog
 *STOPs*
 woof bark
