@@ -67,6 +67,7 @@ public class PA5 {
 			
 			// print the graph in output file
 			pages.writeDotFile(outputFile);
+			
 		
 			scan.close();
 		} catch (Exception e) {
