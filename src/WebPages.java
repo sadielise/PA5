@@ -317,6 +317,7 @@ public class WebPages
 		// create iterator
 		HashTableIterator iterator = new HashTableIterator(termIndex);		
 
+		int count = 0;
 		// for each term i
 		while(iterator.hasNext()){
 
@@ -360,6 +361,7 @@ public class WebPages
 				}
 
 			}
+			count++;
 
 		}
 
@@ -379,6 +381,7 @@ public class WebPages
 		highestSimVal *= inDegree(highestSimString);
 
 
+		System.out.println("count: " + count);
 		DecimalFormat fmt = new DecimalFormat("0.00");
 
 		if(queryWeights == 0){
