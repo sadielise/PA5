@@ -4,9 +4,7 @@
 // Class: CS200
 
 import java.io.File;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class PA5 {

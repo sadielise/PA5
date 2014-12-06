@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -156,11 +155,8 @@ public class WebPages
 
 
 		float TF = (float) term.getTermFrequency(document);
-		//System.out.println("Word: " + word + " Document: " + document + " TF: " + TF);
 		float D = pageCount;
-		//System.out.println("Word: " + word + " Document: " + document + " D: " + D);
 		float DF = term.getDocFrequency();
-		//System.out.println("Word: " + word + " Document: " + document + " DF: " + DF);
 
 		return TF * Math.log(D / DF);
 	}
@@ -225,7 +221,6 @@ public class WebPages
 
 			//return array
 			return stringArray;
-
 		}
 
 		else{
@@ -380,8 +375,7 @@ public class WebPages
 			}
 		}
 		
-		System.out.println("Sim val: " + highestSimVal);
-		System.out.println("Indegree: " + inDegree(highestSimString));
+		// multiply the sim val by the indegree of the file
 		highestSimVal *= inDegree(highestSimString);
 
 
@@ -394,15 +388,5 @@ public class WebPages
 		return listToString(queryList) + " in " + highestSimString + ": " + fmt.format(highestSimVal);
 
 	}
-
-	//testing!!
-	//		public static void main(String args[]){
-	//			String test = "test5.txt";
-	//			WebPages page = new WebPages(5);
-	//			page.addPage(test);
-	//			System.out.println(page.graph.toString());
-	//			page.printTerms();
-	//	
-	//		}
 
 }
