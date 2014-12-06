@@ -380,8 +380,6 @@ public class WebPages
 		// multiply the sim val by the indegree of the file
 		highestSimVal *= inDegree(highestSimString);
 
-
-		System.out.println("count: " + count);
 		DecimalFormat fmt = new DecimalFormat("0.00");
 
 		if(queryWeights == 0){
