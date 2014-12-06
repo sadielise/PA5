@@ -6,7 +6,6 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.TreeMap;
 import java.util.Vector;
 
 
@@ -70,19 +69,6 @@ public class Graph {
 		return numEdges;
 	}
 
-	/**
-	 * Determines the weight of the edge between the vertices v and w </br>
-	 * Precondition: Edge must exist within the graph
-	 * @param v
-	 * @param w
-	 * @return The weight of the edge.
-	 */
-	//dont need edgeweight
-	//	public int getEdgeWeight(Integer v, Integer w)
-	//	{
-	//		return adjList.get(v).get(w);
-	//	}
-
 
 	/**
 	 * adds a vertex to the graph
@@ -115,47 +101,6 @@ public class Graph {
 		numEdges++;
 	}
 
-
-
-	//don't need this method for PA5
-	//	public void addEdge(Integer v, Integer w, int wgt) 
-	//	{
-	//		// Add the edge to both v's and w's adjacency list
-	//		adjList.get(v).put(w, wgt);
-	//		//EDIT goes both ways only if not directed
-	//		if(!directed) adjList.get(w).put(v, wgt);
-	//		numEdges++;
-	//	}
-
-	//don't need this method for PA5
-	//	public void addEdge(Edge e)
-	//	{
-	//		//Extract the vertices and weight from the edge e
-	//		Integer v = e.getV();
-	//		Integer w = e.getW();
-	//		int weight = e.getWeight();
-	//		addEdge(v, w, weight);
-	//	}
-
-	/**
-	 * Removes an edge from the graph </br>
-	 * Precondition: The vertices contained in the edge e exist in the graph
-	 * @param e
-	 */
-	//NOT TESTED WITH NEW FORMAT!!! DO NOT USE UNTIL EDITED
-	public void removeEdge(Edge e)
-	{
-		// Extract the vertices from the edge e
-		Integer v = e.getV();
-		Integer w = e.getW();
-
-		// Remove the edge from v's and w's adjacency list
-		adjList.get(v).remove(w);
-		//EDIT only not directed graph has this
-		if(!directed) adjList.get(w).remove(v);
-		
-		numEdges--;
-	}
 
 	/**
 	 * Finds the edge connecting v and w. </br>
@@ -245,95 +190,5 @@ public class Graph {
 		}
 		return count;
 	}
-
-
-	public static void main(String args[]){
-		Graph graph = new Graph(false);
-		graph.addVertex("vertex2");
-		graph.addVertex("vertex1");
-		graph.addVertex("vertex0");
-		graph.addVertex("vertex3");
-		graph.addVertex("vertex4");
-		graph.addVertex("vertex5");
-		graph.addVertex("vertex5");
-
-
-		graph.addEdge("vertex0", "vertex1");
-		graph.addEdge("vertex2", "vertex3");
-		graph.addEdge("vertex3", "vertex0");
-		graph.addEdge("vertex2", "vertex0");
-		graph.addEdge("vertex1", "vertex4");
-		graph.addEdge("vertex1", "vertex5");
-		graph.addEdge("vertex4", "vertex5");
-		//System.out.println("undirected: \n" + graph.toString());
-
-		Graph graph2 = new Graph(true);
-		graph2.addVertex("vertex2");
-		graph2.addVertex("vertex1");
-		graph2.addVertex("vertex0");
-		graph2.addVertex("vertex3");
-		graph2.addVertex("vertex4");
-		graph2.addVertex("vertex5");
-		graph2.addVertex("vertex5");
-		graph2.addEdge("vertex0", "vertex1");
-		graph2.addEdge("vertex0","vertex3");
-		graph2.addEdge("vertex0","vertex2");
-		graph2.addEdge("vertex2","vertex3");
-		graph2.addEdge("vertex1","vertex4");
-		graph2.addEdge("vertex1","vertex5");
-		graph2.addEdge("vertex4", "vertex5");
-		System.out.println("InDegree: " + graph2.numInDegree("vertex5"));
-		System.out.println("directed: \n" + graph2.toString());
-		graph2.alphaList();
-		System.out.println("directed in order: \n" + graph2.toString());
-
-
-
-	}
-
-//	public static void main(String args[]){
-//		Graph graph = new Graph(false);
-//		graph.addVertex("vertex2");
-//		graph.addVertex("vertex1");
-//		graph.addVertex("vertex0");
-//		graph.addVertex("vertex3");
-//		graph.addVertex("vertex4");
-//		graph.addVertex("vertex5");
-//		graph.addVertex("vertex5");
-//
-//
-//		graph.addEdge("vertex0", "vertex1");
-//		graph.addEdge("vertex2", "vertex3");
-//		graph.addEdge("vertex3", "vertex0");
-//		graph.addEdge("vertex2", "vertex0");
-//		graph.addEdge("vertex1", "vertex4");
-//		graph.addEdge("vertex1", "vertex5");
-//		graph.addEdge("vertex4", "vertex5");
-//		//System.out.println("undirected: \n" + graph.toString());
-//
-//		Graph graph2 = new Graph(true);
-//		graph2.addVertex("vertex2");
-//		graph2.addVertex("vertex1");
-//		graph2.addVertex("vertex0");
-//		graph2.addVertex("vertex3");
-//		graph2.addVertex("vertex4");
-//		graph2.addVertex("vertex5");
-//		graph2.addVertex("vertex5");
-//		graph2.addEdge("vertex0", "vertex1");
-//		graph2.addEdge("vertex0","vertex3");
-//		graph2.addEdge("vertex0","vertex2");
-//		graph2.addEdge("vertex2","vertex3");
-//		graph2.addEdge("vertex1","vertex4");
-//		graph2.addEdge("vertex1","vertex5");
-//		graph2.addEdge("vertex4", "vertex5");
-//		graph2.alphaList();
-//		System.out.println("directed in order: \n" + graph2.toString());
-//		System.out.println("indegree of vertex0: " + graph2.numInDegree("vertex0"));
-//		System.out.println("indegree of vertex1: " + graph2.numInDegree("vertex1"));
-//		System.out.println("indegree of vertex2: " + graph2.numInDegree("vertex2"));
-//		System.out.println("indegree of vertex3: " + graph2.numInDegree("vertex3"));
-//		System.out.println("indegree of vertex4: " + graph2.numInDegree("vertex4"));
-//		System.out.println("indegree of vertex5: " + graph2.numInDegree("vertex5"));
-//	}
 
 }
