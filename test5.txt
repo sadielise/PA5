@@ -1,4 +1,4 @@
-prog5-grapha
+graph5
 37
 simple5.txt
 simple5a.txt

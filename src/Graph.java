@@ -282,6 +282,7 @@ public class Graph {
 		graph2.addEdge("vertex1","vertex4");
 		graph2.addEdge("vertex1","vertex5");
 		graph2.addEdge("vertex4", "vertex5");
+		System.out.println("InDegree: " + graph2.numInDegree("vertex5"));
 		System.out.println("directed: \n" + graph2.toString());
 		graph2.alphaList();
 		System.out.println("directed in order: \n" + graph2.toString());

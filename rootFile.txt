@@ -8,6 +8,6 @@ text4.txt
 and
 dog
 *STOPs*
-woof bark
-gabby sadie
+stellar
+symbols
 lima
