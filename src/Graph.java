@@ -247,6 +247,7 @@ public class Graph {
 	}
 
 
+<<<<<<< HEAD
 	public static void main(String args[]){
 		Graph graph = new Graph(false);
 		graph.addVertex("vertex2");
@@ -290,5 +291,59 @@ public class Graph {
 
 
 	}
+=======
+//	public static void main(String args[]){
+//		Graph graph = new Graph(false);
+//		graph.addVertex("vertex2");
+//		graph.addVertex("vertex1");
+//		graph.addVertex("vertex0");
+//		graph.addVertex("vertex3");
+//		graph.addVertex("vertex4");
+//		graph.addVertex("vertex5");
+//		graph.addVertex("vertex5");
+//
+//
+//		graph.addEdge("vertex0", "vertex1");
+//		graph.addEdge("vertex2", "vertex3");
+//		graph.addEdge("vertex3", "vertex0");
+//		graph.addEdge("vertex2", "vertex0");
+//		graph.addEdge("vertex1", "vertex4");
+//		graph.addEdge("vertex1", "vertex5");
+//		graph.addEdge("vertex4", "vertex5");
+//		//System.out.println("undirected: \n" + graph.toString());
+//
+//		Graph graph2 = new Graph(true);
+//		graph2.addVertex("vertex2");
+//		graph2.addVertex("vertex1");
+//		graph2.addVertex("vertex0");
+//		graph2.addVertex("vertex3");
+//		graph2.addVertex("vertex4");
+//		graph2.addVertex("vertex5");
+//		graph2.addVertex("vertex5");
+//		graph2.addEdge("vertex0", "vertex1");
+//		graph2.addEdge("vertex0","vertex3");
+//		graph2.addEdge("vertex0","vertex2");
+//		graph2.addEdge("vertex2","vertex3");
+//		graph2.addEdge("vertex1","vertex4");
+//		graph2.addEdge("vertex1","vertex5");
+//		graph2.addEdge("vertex4", "vertex5");
+//		graph2.alphaList();
+//		System.out.println("directed in order: \n" + graph2.toString());
+//		System.out.println("indegree of vertex0: " + graph2.numInDegree("vertex0"));
+//		System.out.println("indegree of vertex1: " + graph2.numInDegree("vertex1"));
+//		System.out.println("indegree of vertex2: " + graph2.numInDegree("vertex2"));
+//		System.out.println("indegree of vertex3: " + graph2.numInDegree("vertex3"));
+//		System.out.println("indegree of vertex4: " + graph2.numInDegree("vertex4"));
+//		System.out.println("indegree of vertex5: " + graph2.numInDegree("vertex5"));
+//
+//
+//
+//
+//
+//
+//
+//
+//	}
+>>>>>>> origin/master
 
 }
