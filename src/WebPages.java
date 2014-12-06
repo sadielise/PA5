@@ -244,8 +244,14 @@ public class WebPages
 
 		try{
 
+			// change file name
+			outputFile += ".dot";
+
+			// create a new file
+			File file = new File(outputFile);
+
 			// create a print writer
-			PrintWriter writer = new PrintWriter(outputFile);
+			PrintWriter writer = new PrintWriter(file);
 
 			// create the first line of the program
 			writer.println("digraph graph5 {");
@@ -255,7 +261,9 @@ public class WebPages
 			writer.print(files);
 
 			// print the final bracket
-			writer.println("}");		
+			writer.println("}");
+
+			writer.close();
 		}	
 		catch(Exception e){
 			System.err.println("Print writer error: " + e);
@@ -284,7 +292,7 @@ public class WebPages
 		Collections.sort(queryList);
 
 		/* array that supports mapping b/w positions in the component
-		   arrays and which documents are being referenced */
+			   arrays and which documents are being referenced */
 		ArrayList<String> docs = fileNames;
 		Collections.sort(docs);
 
@@ -371,10 +379,10 @@ public class WebPages
 				highestSimString = docs.get(m);
 			}
 		}
-
-		// multiply the heighest sim val by the indegree of 
-		//highestSimVal = highestSimVal * inDegree(highestSimString);
-		System.out.println("InDegree: " + inDegree(highestSimString));
+		
+		System.out.println("Sim val: " + highestSimVal);
+		System.out.println("Indegree: " + inDegree(highestSimString));
+		//highestSimVal *= inDegree(highestSimString);
 
 
 		DecimalFormat fmt = new DecimalFormat("0.00");
@@ -388,13 +396,13 @@ public class WebPages
 	}
 
 	//testing!!
-//		public static void main(String args[]){
-//			String test = "test5.txt";
-//			WebPages page = new WebPages(5);
-//			page.addPage(test);
-//			System.out.println(page.graph.toString());
-//			page.printTerms();
-//	
-//		}
+	//		public static void main(String args[]){
+	//			String test = "test5.txt";
+	//			WebPages page = new WebPages(5);
+	//			page.addPage(test);
+	//			System.out.println(page.graph.toString());
+	//			page.printTerms();
+	//	
+	//		}
 
 }
