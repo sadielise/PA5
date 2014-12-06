@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 digraph graph5 {
+=======
+digraph graphOutput {
+>>>>>>> origin/master
 "test1.txt" -> "test3.txt";
 "test1.txt" -> "randomfile.txt";
 "test2.txt" -> "text4.txt";

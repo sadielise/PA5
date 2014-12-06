@@ -240,16 +240,16 @@ public class WebPages
 		try{
 
 			// change file name
-			outputFile += ".dot";
+			String addExtension = outputFile + ".dot";
 
 			// create a new file
-			File file = new File(outputFile);
+			File file = new File(addExtension);
 
 			// create a print writer
 			PrintWriter writer = new PrintWriter(file);
 
 			// create the first line of the program
-			writer.println("digraph graph5 {");
+			writer.println("digraph " + outputFile + " {");
 
 			// get the files and where they point to
 			String files = graph.toFile();
