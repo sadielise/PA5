@@ -120,13 +120,13 @@ public class WebPages
 	public String stripHTML(String a, String fileName)
 	{
 		graph.addVertex(fileName);
-		String pattern1 = "(<a\\p{Space}*href=\"http://)";
-		String pattern2 = "(.*)(\">.*)";
+		String pattern1 = "(<a\\s*href=\"http://)";
+		String pattern2 = "(.*?)(\">)(.*)";
 		//split the file into an array containing the different files
 		String[] array = a.split(pattern1);
 		//make the files just the filenames
 		for(int i = 0; i < array.length; i++){
-			array[i] = array[i].replaceAll(pattern2, "$1");
+			array[i] = array[i].replaceFirst(pattern2, "$1").toLowerCase();
 		}
 
 		if(array.length>1){
@@ -382,7 +382,7 @@ public class WebPages
 		
 		System.out.println("Sim val: " + highestSimVal);
 		System.out.println("Indegree: " + inDegree(highestSimString));
-		//highestSimVal *= inDegree(highestSimString);
+		highestSimVal *= inDegree(highestSimString);
 
 
 		DecimalFormat fmt = new DecimalFormat("0.00");

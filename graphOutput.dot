@@ -1,10 +1,10 @@
-digraph graphOutput  {
-“test1.txt” -> “test3.txt”;
-“test1.txt” -> “randomfile.txt”;
-“test2.txt” -> “text4.txt”;
-“test2.txt” -> “test3.txt”;
-“test3.txt” -> “doesn’tExist”;
-“text4.txt” -> “test1.txt”;
-“text4.txt” -> “test3.txt”;
-“text4.txt” -> “text4.txt”;
+digraph graph5 {
+"test1.txt" -> "test3.txt";
+"test1.txt" -> "randomfile.txt";
+"test2.txt" -> "text4.txt";
+"test2.txt" -> "test3.txt";
+"test3.txt" -> "doesn'texist";
+"text4.txt" -> "test1.txt";
+"text4.txt" -> "test3.txt";
+"text4.txt" -> "text4.txt";
 }
