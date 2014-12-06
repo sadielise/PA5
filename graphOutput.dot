@@ -1,17 +1,9 @@
 digraph graph5 {
-<<<<<<< HEAD
-"test1.txt" -> "test3.txt"> We also love possums!!!This is a <tag!0 !@4 6$!57# full )* of STUFF> <a herf="http://test2.txt";
-"test1.txt" -> "randomfile.txt";
-"test2.txt" -> "text4.txt";
-"test2.txt" -> "TEST3.txt";
-"test3.txt" -> "doesn'tExist";
-=======
 "test1.txt" -> "test3.txt";
 "test1.txt" -> "randomfile.txt";
 "test2.txt" -> "text4.txt";
 "test2.txt" -> "test3.txt";
 "test3.txt" -> "doesn'texist";
->>>>>>> origin/master
 "text4.txt" -> "test1.txt";
 "text4.txt" -> "test3.txt";
 "text4.txt" -> "text4.txt";

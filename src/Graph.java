@@ -247,7 +247,6 @@ public class Graph {
 	}
 
 
-<<<<<<< HEAD
 	public static void main(String args[]){
 		Graph graph = new Graph(false);
 		graph.addVertex("vertex2");
@@ -291,7 +290,7 @@ public class Graph {
 
 
 	}
-=======
+
 //	public static void main(String args[]){
 //		Graph graph = new Graph(false);
 //		graph.addVertex("vertex2");
@@ -335,15 +334,6 @@ public class Graph {
 //		System.out.println("indegree of vertex3: " + graph2.numInDegree("vertex3"));
 //		System.out.println("indegree of vertex4: " + graph2.numInDegree("vertex4"));
 //		System.out.println("indegree of vertex5: " + graph2.numInDegree("vertex5"));
-//
-//
-//
-//
-//
-//
-//
-//
 //	}
->>>>>>> origin/master
 
 }
